@@ -1,3 +1,4 @@
+using FreeCourse.Services.Catalog.Services;
 using FreeCourse.Services.Catalog.Settings;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -29,6 +30,10 @@ namespace FreeCourse.Services.Catalog
         {
             
             services.AddAutoMapper(typeof(Startup));
+            services.AddScoped<ICategoryService, CategoryService>();
+
+            services.AddScoped<ICourseService, CourseService>();
+
             services.Configure<DatabaseSettings>(Configuration.GetSection("DatabaseSettings"));
             services.AddSingleton<IDatabaseSettings>(sp=>
             {
