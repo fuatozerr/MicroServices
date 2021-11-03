@@ -1,8 +1,10 @@
 using FreeCourse.Services.Catalog.Services;
 using FreeCourse.Services.Catalog.Settings;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -40,10 +42,21 @@ namespace FreeCourse.Services.Catalog
                 return sp.GetRequiredService<IOptions<DatabaseSettings>>().Value;
             });
 
-            services.AddControllers();
+            services.AddControllers(opt=> {  //bütün controller? korumaya al?r.
+
+                opt.Filters.Add(new AuthorizeFilter());
+            
+            });
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "FreeCourse.Services.Catalog", Version = "v1" });
+            });
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opts =>
+            {
+                opts.Authority = Configuration["IdentityServerURL"];
+                opts.Audience = "resource_catalog";
+                opts.RequireHttpsMetadata = false;
             });
         }
 
