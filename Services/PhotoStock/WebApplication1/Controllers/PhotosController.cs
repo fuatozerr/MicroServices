@@ -12,6 +12,8 @@ using System.Threading.Tasks;
 
 namespace FreeCourse.Services.PhotoStock.Controllers
 {
+    [Route("api/[controller]/[action]")]
+    [ApiController]
     public class PhotosController : CustomBaseController
     {
         [HttpPost]
@@ -46,6 +48,11 @@ namespace FreeCourse.Services.PhotoStock.Controllers
             System.IO.File.Delete(path);
 
             return CreateActionResultInstance(Response<NoContent>.Success(204));
+        }
+
+        public IActionResult test(string photoUrl)
+        {
+            return Ok(photoUrl);
         }
     }
 }
