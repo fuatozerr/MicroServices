@@ -56,7 +56,7 @@ namespace FreeCourse.IdentityServer
 
                     if (!userManager.Users.Any())
                     {
-                        userManager.CreateAsync(new ApplicationUser { UserName = "fcakiroglu16", Email = "f-cakiroglu@outlook.com", City = "Ankara" }, "Password12*").Wait();
+                        userManager.CreateAsync(new ApplicationUser { UserName = "ozerfa", Email = "ozerfa@tskb.com.tr", City = "Ankara" }, "Password12*").Wait();
                     }
                 }
 
