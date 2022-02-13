@@ -71,7 +71,7 @@ namespace FreeCourse.Services.Catalog
             }
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
