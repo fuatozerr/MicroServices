@@ -9,6 +9,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Shared\FreeCourse.Shared\FreeCourse.Shared.csproj" />
+    <ProjectReference Include="..\FreeCourse.Services.Order.Domain.Infrastructure\FreeCourse.Services.Order.Infrastructure.csproj" />
     <ProjectReference Include="..\FreeCourse.Services.Order.Domain\FreeCourse.Services.Order.Domain.csproj" />
   </ItemGroup>
 
